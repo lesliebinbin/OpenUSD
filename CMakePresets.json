@@ -1,0 +1,54 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "environment": {
+        "VULKAN_SDK": "/usr"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "vcpkg",
+      "inherits": "base",
+      "displayName": "Vcpkg Default",
+      "description": "Configure using vcpkg toolchain",
+      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+    },
+    {
+      "name": "all-features",
+      "inherits": "vcpkg",
+      "displayName": "Vcpkg with All Features",
+      "description": "Enable all plugins and components with vcpkg and Vulkan",
+      "cacheVariables": {
+        "PXR_BUILD_ALEMBIC_PLUGIN": "ON",
+        "PXR_BUILD_DRACO_PLUGIN": "ON",
+        "PXR_BUILD_EMBREE_PLUGIN": "ON",
+        "PXR_BUILD_OPENIMAGEIO_PLUGIN": "ON",
+        "PXR_BUILD_OPENCOLORIO_PLUGIN": "ON",
+        "PXR_ENABLE_OPENVDB_SUPPORT": "ON",
+        "PXR_ENABLE_PTEX_SUPPORT": "ON",
+        "PXR_ENABLE_MATERIALX_SUPPORT": "ON",
+        "PXR_ENABLE_VULKAN_SUPPORT": "ON",
+        "PXR_BUILD_USDVIEW": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "all-features",
+      "configurePreset": "all-features"
+    }
+  ]
+}

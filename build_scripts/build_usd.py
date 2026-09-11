@@ -2398,9 +2398,18 @@ args = parser.parse_args()
 
 class InstallContext:
     def __init__(self, args):
-        # Assume the USD source directory is in the parent directory
-        self.usdSrcDir = os.path.normpath(
+        # Assume the USD source directory is in the parent directory, or current
+        # working directory / OPENUSD_SRC if running as an installed tool.
+        parentDir = os.path.normpath(
             os.path.join(os.path.abspath(os.path.dirname(__file__)), ".."))
+        if os.path.exists(os.path.join(parentDir, "pxr", "CMakeLists.txt")):
+            self.usdSrcDir = parentDir
+        elif os.path.exists(os.path.join(os.getcwd(), "pxr", "CMakeLists.txt")):
+            self.usdSrcDir = os.getcwd()
+        elif "OPENUSD_SRC" in os.environ and os.path.exists(os.path.join(os.environ["OPENUSD_SRC"], "pxr", "CMakeLists.txt")):
+            self.usdSrcDir = os.path.abspath(os.environ["OPENUSD_SRC"])
+        else:
+            self.usdSrcDir = parentDir
 
         # Directory where USD will be installed
         self.usdInstDir = os.path.abspath(args.install_dir)

@@ -16,6 +16,15 @@ build_usd_full = "build_scripts.cli:build_usd_full_main"
 [tool.hatch.build.targets.wheel]
 packages = ["build_scripts"]
 
+
+[tool.hatch.build.targets.wheel.force-include]
+"CMakeLists.txt" = "CMakeLists.txt"
+"cmake" = "cmake"
+"pxr" = "pxr"
+"extras" = "extras"
+"third_party" = "third_party"
+
+
 [project.optional-dependencies]
 build-tool = [
     "jinja2>=3.1.6",

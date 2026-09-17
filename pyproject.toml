@@ -16,9 +16,14 @@ build_usd_full = "build_scripts.cli:build_usd_full_main"
 [tool.hatch.build.targets.wheel]
 packages = ["build_scripts"]
 
-[dependency-groups]
-dev = [
+[project.optional-dependencies]
+build-tool = [
     "jinja2>=3.1.6",
     "pyopengl>=3.1.10",
     "pyside6>=6.11.2",
+]
+
+[dependency-groups]
+dev = [
+    "openusd[build-tool]",
 ]

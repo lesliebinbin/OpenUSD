@@ -12,4 +12,4 @@ run = "uv sync"
 
 [tasks.build]
 description = "Build the application"
-run = "uv run build_usd"
+run = "uv run build_usd "${UV_PROJECT_ENVIRONMENT:-.venv}"

@@ -1,0 +1,15 @@
+[tools]
+python = "{{ python_version }}"
+uv = "latest"
+
+[settings]
+python.uv_venv_auto = "create|source"
+
+[tasks.setup]
+description = "Clone upstream openusd"
+run = "uv sync"
+
+
+[tasks.build]
+description = "Build the application"
+run = "uv run build_usd"

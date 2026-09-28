@@ -387,11 +387,7 @@ The additional dependencies that must be supplied when invoking cmake are:
 | Dependency Name                   | Description                                       |
 | ----------------------------------|-------------------------------------------------- |
 | ALEMBIC_DIR                       | The location of [Alembic](https://https://github.com/alembic/alembic)   | 
-| OPENEXR_LOCATION                  | The location of [OpenEXR](http://www.openexr.com) |
-| Imath_DIR (If not using OpenEXR)  | Path to the CMake package config of a Imath SDK install. (With OpenEXR 3+, Imath can be used explicitly instead of OpenEXR.)|
-
-Either OpenEXR or Imath is required depending on which library is used by the
-Alembic library specified in ALEMBIC_DIR.
+| Imath_DIR                         | Path to the CMake package config of a Imath SDK install. |
 
 See [3rd Party Library and Application Versions](VERSIONS.md) for version information.
 
@@ -413,6 +409,17 @@ when invoking cmake. This plugin is compatible with Draco 1.3.4. The additional 
 | Dependency Name    | Description                              | Version |
 | ------------------ |----------------------------------------  | ------- |
 | DRACO_ROOT         | The root path to a Draco SDK install.    | 1.3.4   |
+
+##### AOMedia Polygonal Mesh Coding
+
+Enable the [AOMedia](https://aomedia.org/) Polygonal Mesh Coding (PMC) library in the build by specifying the cmake flag `PXR_BUILD_PMC_PLUGIN=TRUE`
+when invoking cmake. This library provides support for compressed mesh data using the AOMedia Polygonal Mesh Coding compression algorithm.
+
+The additional dependencies that must be supplied when invoking cmake are:
+
+| Dependency Name    | Description                              |
+| ------------------ |----------------------------------------  |
+| PMC_ROOT           | The root path to a PMC SDK install.     |
 
 ## Tests
 
